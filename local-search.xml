@@ -4,13 +4,38 @@
   
   
   <entry>
-    <title>自我介绍</title>
-    <link href="/2023/03/20/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/"/>
-    <url>/2023/03/20/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/</url>
+    <title>智能指针</title>
+    <link href="/2023/03/21/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/"/>
+    <url>/2023/03/21/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</url>
     
-    <content type="html"><![CDATA[<p>  我是专科，目前大一，快学完四大件，会用linux,socket,C++的标准库。<code>中职的时候学的</code></p><p>​其他的像是什么java，python都是用C++思维去学的。</p><p>学完之后，就不知道具体该往那个方向走了，是嵌入式？音视频？逆向？后端？opencv？，现在处于不知道该干嘛的阶段，史无前例。</p><p>就想做个博客，可以不在前进的道路上忘记四大件也能作为面试的加分项。</p><p>所以，这个博客会提供以下信息</p><ul><li>C++特性</li><li>所有语言的共性</li><li>一些框架的api</li><li>四大件</li><li>四大件上知识点在实际上的应用点（尝试）</li></ul><blockquote><p>我的建议是你直接去问<code>chatgpt4</code>。因为<code>chatgpt4</code>确实很厉害。</p><p>当然，我的博客写的会更加容易理解一些。</p></blockquote><p><em><strong>the end</strong></em></p>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>本篇文章讲述三个东西，shared_ptr,unique_ptr,weak_ptr</p></blockquote><p>智能指针就是会自动帮你释放内存的指针。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-type">int</span>* p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">6</span>);<br><span class="hljs-keyword">delete</span> p;<br><br><span class="hljs-function">shared_ptr&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">p1</span><span class="hljs-params">(<span class="hljs-keyword">new</span> <span class="hljs-type">int</span>(<span class="hljs-number">4</span>))</span></span>;<br><span class="hljs-comment">// 不用释放</span><br></code></pre></td></tr></table></figure><h1 id="Shared-Ptr"><a href="#Shared-Ptr" class="headerlink" title="Shared_Ptr"></a>Shared_Ptr</h1><p><code>shared_ptr</code>指针的特点就是可以让多个<code>shared_ptr</code>指向同一块内存，称为<code>共享</code>。</p><p>当没有<code>shared_ptr</code>指向这块内存的时候，就释放这块内存</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-function">shared_ptr&lt;string&gt; <span class="hljs-title">s1</span><span class="hljs-params">(<span class="hljs-keyword">new</span> string(<span class="hljs-string">&quot;abc&quot;</span>))</span></span>;<span class="hljs-comment">// s1指向abc的内存块</span><br>    shared_ptr&lt;string&gt; s1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">string</span>(<span class="hljs-string">&quot;abc&quot;</span>);<span class="hljs-comment">// 不能用这种方式，这个涉及到从string指针转换到shared_ptr,而shared_ptr是不允许自动转换的</span><br>    shared_ptr&lt;string&gt; s2 = s1;<span class="hljs-comment">// s2指向abc内存块</span><br>    <br>    s1.<span class="hljs-built_in">reset</span>(<span class="hljs-literal">nullptr</span>);<span class="hljs-comment">// 设置s1指向nullptr，不在指向abc内存块。</span><br>      <span class="hljs-comment">//  现在s2指向内存块，而s1没有指向。abc内存块只被s2指向</span><br>    <span class="hljs-comment">//abc内存现在并没有被释放</span><br>    std::cout &lt;&lt; *s2;<span class="hljs-comment">// 输出&quot;abc&quot;，证明了s1不指向但由于s2指向，所以没有释放</span><br>&#125;<br></code></pre></td></tr></table></figure><blockquote><p>shared_ptr默认的释放方式是，delete p</p></blockquote><h2 id="指向数组"><a href="#指向数组" class="headerlink" title="指向数组"></a>指向数组</h2><p>释放单个指针的方式，<code>delete p</code><br>释放一个数组的方式,<code>delete[] p</code></p><p>由于 <code>shared_ptr默认的释放方式是delete p </code>，那么就需要更改释放指针的方式，方法如下</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-function">shared_ptr&lt;string&gt; <span class="hljs-title">ptr</span><span class="hljs-params">(<span class="hljs-keyword">new</span> string[<span class="hljs-number">4</span>])</span></span>;<span class="hljs-comment">// 默认delete p的释放</span><br>    <span class="hljs-function">shared_ptr&lt;string&gt; <span class="hljs-title">ptr2</span><span class="hljs-params">(<span class="hljs-keyword">new</span> string[<span class="hljs-number">4</span>],</span></span><br><span class="hljs-params"><span class="hljs-function">       [](string* p)&#123; <span class="hljs-keyword">delete</span>[] p; &#125;</span></span><br><span class="hljs-params"><span class="hljs-function">                          )</span></span>;<span class="hljs-comment">// 默认delete[] p的释放</span><br>&#125;<br></code></pre></td></tr></table></figure><p>这个更改为<code>delete[] p</code>的东西(就是ptr2多出来的东西),是一个函数<code>称为lambda</code>，在要释放ptr2的内存的时候，将ptr2指向的内存作为参数传入给<code>lambda</code>的第一个<code>string* p</code>，然后这个函数调用<code>delete[] p</code>。</p><h2 id="shared-ptr总结"><a href="#shared-ptr总结" class="headerlink" title="shared_ptr总结"></a>shared_ptr总结</h2><ul><li>.reset()</li><li>.count() 得知有多少个shared_ptr正在指向目标内存</li><li>释放数组要在第二个参数指定lambda</li><li>赋值的时候不能自动转换<code>隐式转换</code></li></ul>]]></content>
     
     
+    
+    <tags>
+      
+      <tag>C++特性</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>智能指针</title>
+    <link href="/2023/03/21/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/"/>
+    <url>/2023/03/21/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>C++特性</tag>
+      
+    </tags>
     
   </entry>
   
