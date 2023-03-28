@@ -16,22 +16,21 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本篇文章讲述三个东西，shared_ptr,unique_ptr,weak_ptr  智能指针就是会自动帮你释放内存的指针。 12345int* p &#x3D; new int(6);delete p;shared_ptr&lt;int&gt; p1(new int(4));&#x2F;&#x2F; 不用释放  Shared_Ptr shared_ptr指针的特点就是可以让多个shared_ptr指向同一块内存，称为共享。">
+    <meta name="description" content="博主目前专科大一，快学完四大件，也会一点框架使用。现在目前没有方向就想着写写博客。 博客内容：  C++的心得 四大件的总结 框架的项目介绍 屁大点事  谢谢观看">
 <meta property="og:type" content="article">
-<meta property="og:title" content="智能指针">
-<meta property="og:url" content="http://example.com/2023/03/21/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/index.html">
+<meta property="og:title" content="介绍">
+<meta property="og:url" content="http://example.com/2023/03/28/%E4%BB%8B%E7%BB%8D/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="本篇文章讲述三个东西，shared_ptr,unique_ptr,weak_ptr  智能指针就是会自动帮你释放内存的指针。 12345int* p &#x3D; new int(6);delete p;shared_ptr&lt;int&gt; p1(new int(4));&#x2F;&#x2F; 不用释放  Shared_Ptr shared_ptr指针的特点就是可以让多个shared_ptr指向同一块内存，称为共享。">
+<meta property="og:description" content="博主目前专科大一，快学完四大件，也会一点框架使用。现在目前没有方向就想着写写博客。 博客内容：  C++的心得 四大件的总结 框架的项目介绍 屁大点事  谢谢观看">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-03-21T08:50:23.000Z">
-<meta property="article:modified_time" content="2023-03-27T10:05:07.612Z">
+<meta property="article:published_time" content="2023-03-28T04:34:32.532Z">
+<meta property="article:modified_time" content="2023-03-28T04:39:20.292Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="C++特性">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>智能指针 - Hexo</title>
+  <title>介绍 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="智能指针"></span>
+            <span id="subtitle" data-typed-text="介绍"></span>
           
         </div>
 
@@ -208,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-03-21 16:50" pubdate>
-          March 21, 2023 pm
+        <time datetime="2023-03-28 12:34" pubdate>
+          March 28, 2023 pm
         </time>
       </span>
     
@@ -220,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k words
+          73 words
         
       </span>
     
@@ -231,7 +230,7 @@
         
         
         
-          17 mins
+          1 mins
         
       </span>
     
@@ -269,59 +268,20 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">智能指针</h1>
+            <h1 style="display: none">介绍</h1>
             
             
               <div class="markdown-body">
                 
-                <blockquote>
-<p>本篇文章讲述三个东西，shared_ptr,unique_ptr,weak_ptr</p>
-</blockquote>
-<p>智能指针就是会自动帮你释放内存的指针。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-type">int</span>* p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">6</span>);<br><span class="hljs-keyword">delete</span> p;<br><br><span class="hljs-function">shared_ptr&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">p1</span><span class="hljs-params">(<span class="hljs-keyword">new</span> <span class="hljs-type">int</span>(<span class="hljs-number">4</span>))</span></span>;<br><span class="hljs-comment">// 不用释放</span><br></code></pre></td></tr></table></figure>
-
-<h1 id="Shared-Ptr"><a href="#Shared-Ptr" class="headerlink" title="Shared_Ptr"></a>Shared_Ptr</h1><hr>
-<p><code>shared_ptr</code>指针的特点就是可以让多个<code>shared_ptr</code>指向同一块内存，称为<code>共享</code>。</p>
-<p>当没有<code>shared_ptr</code>指向这块内存的时候，就释放这块内存</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-function">shared_ptr&lt;string&gt; <span class="hljs-title">s1</span><span class="hljs-params">(<span class="hljs-keyword">new</span> string(<span class="hljs-string">&quot;abc&quot;</span>))</span></span>;	<span class="hljs-comment">// s1指向abc的内存块</span><br>    shared_ptr&lt;string&gt; s1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">string</span>(<span class="hljs-string">&quot;abc&quot;</span>);	<span class="hljs-comment">// 不能用这种方式，这个涉及到从string指针转换到shared_ptr,而shared_ptr是不允许自动转换的</span><br>    shared_ptr&lt;string&gt; s2 = s1;				<span class="hljs-comment">// s2指向abc内存块</span><br>    <br>    s1.<span class="hljs-built_in">reset</span>(<span class="hljs-literal">nullptr</span>);			<span class="hljs-comment">// 设置s1指向nullptr，不在指向abc内存块。</span><br>    						  <span class="hljs-comment">//  现在s2指向内存块，而s1没有指向。abc内存块只被s2指向</span><br>    <span class="hljs-comment">//abc内存现在并没有被释放</span><br>    std::cout &lt;&lt; *s2;		<span class="hljs-comment">// 输出&quot;abc&quot;，证明了s1不指向但由于s2指向，所以没有释放</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p>shared_ptr默认的释放方式是，delete p</p>
-</blockquote>
-<h2 id="指向数组"><a href="#指向数组" class="headerlink" title="指向数组"></a>指向数组</h2><p>释放单个指针的方式，<code>delete p</code><br>释放一个数组的方式,<code>delete[] p</code></p>
-<p>由于 <code>shared_ptr默认的释放方式是delete p </code>，那么就需要更改释放指针的方式，方法如下</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-function">shared_ptr&lt;string&gt; <span class="hljs-title">ptr</span><span class="hljs-params">(<span class="hljs-keyword">new</span> string[<span class="hljs-number">4</span>])</span></span>;	<span class="hljs-comment">// 默认delete p的释放</span><br>    <span class="hljs-function">shared_ptr&lt;string&gt; <span class="hljs-title">ptr2</span><span class="hljs-params">(<span class="hljs-keyword">new</span> string[<span class="hljs-number">4</span>],</span></span><br><span class="hljs-params"><span class="hljs-function">       [](string* p)&#123; <span class="hljs-keyword">delete</span>[] p; &#125;</span></span><br><span class="hljs-params"><span class="hljs-function">                          )</span></span>;	<span class="hljs-comment">// 默认delete[] p的释放</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>这个更改为<code>delete[] p</code>的东西(就是ptr2多出来的东西),是一个函数<code>称为lambda</code>，在要释放ptr2的内存的时候，将ptr2指向的内存作为参数传入给<code>lambda</code>的第一个<code>string* p</code>，然后这个函数调用<code>delete[] p</code>。</p>
-<h2 id="shared-ptr总结"><a href="#shared-ptr总结" class="headerlink" title="shared_ptr总结"></a>shared_ptr总结</h2><ul>
-<li>.reset()</li>
-<li>.count() 得知有多少个shared_ptr正在指向目标内存</li>
-<li>释放数组要在第二个参数指定lambda</li>
-<li>赋值的时候不能自动转换<code>隐式转换</code></li>
-</ul>
-<h1 id="Weak-ptr"><a href="#Weak-ptr" class="headerlink" title="Weak_ptr"></a>Weak_ptr</h1><hr>
-<h2 id="shared-ptr的问题-双向指向"><a href="#shared-ptr的问题-双向指向" class="headerlink" title="shared_ptr的问题-双向指向"></a>shared_ptr的问题-双向指向</h2><p>shared_ptr的机制是，当最后一个指向这个内存块的shared_ptr不在指向这个内存块时，就将这个内存块删除。</p>
-<p>现在出现了这个情况</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">A</span>&#123;<br>    shared_ptr&lt;B&gt; obj_B;<br>&#125;<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">B</span>&#123;<br>    shared_ptr&lt;A&gt; obj_A;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br><br>    <br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>A中的成员指向b，B中的成员指向a。那么就会互相指向，导致内存无法释放.</p>
-<h2 id="weak-ptr用法"><a href="#weak-ptr用法" class="headerlink" title="weak_ptr用法"></a>weak_ptr用法</h2><p>weak_ptr就是单纯的指向内存块，不会影响到shared_ptr的数量，当然，shared_ptr指向的内存块被删除的时候，所有指向这个内存块的weak_ptr都会为空。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-function">shared_ptr&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">a</span><span class="hljs-params">(<span class="hljs-keyword">new</span> <span class="hljs-type">int</span>(<span class="hljs-number">32</span>))</span></span>;<br>    weak_ptr&lt;<span class="hljs-type">int</span>&gt; b = a;<br><br>    *(b.<span class="hljs-built_in">lock</span>()) = <span class="hljs-number">33</span>;<br><br>    cout &lt;&lt; *(b.<span class="hljs-built_in">lock</span>());<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;;<br><br></code></pre></td></tr></table></figure>
-
+                <p>博主目前专科大一，快学完四大件，也会一点框架使用。现在目前没有方向就想着写写博客。</p>
+<p>博客内容：</p>
 <ul>
-<li><p>lock()</p>
-<p>weak_ptr要改这个内存块需要先调用lock(),lock()会返回一个新的shared_ptr指向这块内存</p>
-</li>
+<li>C++的心得</li>
+<li>四大件的总结</li>
+<li>框架的项目介绍</li>
+<li>屁大点事</li>
 </ul>
-<h1 id="unique-ptr"><a href="#unique-ptr" class="headerlink" title="unique_ptr"></a>unique_ptr</h1><hr>
-<p>这个指针和shared_ptr类似，但是unique_ptr只能一个指针指向一块内存，不能2个unique_ptr指向一个内存；</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-type">int</span> p =     <span class="hljs-keyword">new</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">32</span>);<br>    <span class="hljs-function">unique&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">ptr</span><span class="hljs-params">(p)</span></span>;	<span class="hljs-comment">// 这就好了</span><br>    <span class="hljs-function">unique&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">ptr1</span><span class="hljs-params">(p)</span> </span>; <span class="hljs-comment">// ERROR</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h2 id="转移拥有权"><a href="#转移拥有权" class="headerlink" title="转移拥有权"></a>转移拥有权</h2><p>使用std::move就可以转交拥有权了</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-function">unique&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">ptr1</span><span class="hljs-params">(std::move(p))</span></span>; 	<span class="hljs-comment">// OK,ptr指向空，ptr1指向p的内存</span><br></code></pre></td></tr></table></figure>
-
-<h2 id="指向数组-1"><a href="#指向数组-1" class="headerlink" title="指向数组"></a>指向数组</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-function">unique&lt;<span class="hljs-type">int</span>[]&gt; <span class="hljs-title">ptr1</span><span class="hljs-params">(<span class="hljs-keyword">new</span> <span class="hljs-type">int</span>[<span class="hljs-number">10</span>])</span></span>;<br></code></pre></td></tr></table></figure>
-
+<p>谢谢观看</p>
 
                 
               </div>
@@ -331,13 +291,6 @@
               <div class="post-metas my-3">
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/C-%E7%89%B9%E6%80%A7/">#C++特性</a>
-      
-    </div>
-  
 </div>
 
 
@@ -346,8 +299,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>智能指针</div>
-      <div>http://example.com/2023/03/21/智能指针/</div>
+      <div>介绍</div>
+      <div>http://example.com/2023/03/28/介绍/</div>
     </div>
     <div class="license-meta">
       
@@ -359,7 +312,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>March 21, 2023</div>
+          <div>March 28, 2023</div>
         </div>
       
       
