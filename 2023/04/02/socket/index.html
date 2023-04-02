@@ -23,8 +23,8 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="BASE2个主机用socket来建立连接 通信流程将整个过程比作2个木板(A,B)墙上拉水管的过程，但是在B墙的前面还有一个人(C) 客户端  创建socket socket(AF_INET, SOCK_STREAM, 0) 参数：ipv4 or ipv6,tcp or udp,default value is 0 返回值：就是一个socket的编号，这个编号代表这个socket 函数作用：创建一">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-04-02T06:36:32.356Z">
-<meta property="article:modified_time" content="2023-04-02T07:34:41.235Z">
+<meta property="article:published_time" content="2023-04-02T07:37:46.807Z">
+<meta property="article:modified_time" content="2023-04-02T07:38:26.284Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -207,7 +207,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-02 14:36" pubdate>
+        <time datetime="2023-04-02 15:37" pubdate>
           April 2, 2023 pm
         </time>
       </span>
@@ -296,7 +296,7 @@
 </blockquote>
 </li>
 <li><p>收发</p>
-<p> <code>send(sockfd, message, strlen(message), 0); </code></p>
+<p><code>send(sockfd, message, strlen(message), 0); </code></p>
 <p><strong>参数</strong>：<code>从那个socket出发去通信</code>,<code>要发送的东西</code>,<code>发送的大小</code>,<code>default is 0</code></p>
 <p><strong>返回值</strong>：<code>-1 -&gt; error</code>,<code>num -&gt; 发送了多少数据</code></p>
 <p><strong>函数作用</strong>：<code>向B发送信息</code></p>
@@ -357,7 +357,7 @@
 </blockquote>
 </li>
 <li><p>关闭socket</p>
-<p>  <code>close(sockfd);</code></p>
+<p><code>close(sockfd);</code></p>
 <blockquote>
 <p>same story</p>
 </blockquote>
@@ -369,6 +369,7 @@
 </blockquote>
 <h1 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h1><h2 id="fork"><a href="#fork" class="headerlink" title="fork"></a>fork</h2><h2 id="signal"><a href="#signal" class="headerlink" title="signal"></a>signal</h2><h2 id="示例代码link-1"><a href="#示例代码link-1" class="headerlink" title="示例代码link"></a>示例代码link</h2><h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><h2 id="pthread"><a href="#pthread" class="headerlink" title="pthread"></a>pthread</h2><h2 id="和C-库的async和future对比"><a href="#和C-库的async和future对比" class="headerlink" title="和C++库的async和future对比"></a>和C++库的async和future对比</h2><h2 id="示例代码link-2"><a href="#示例代码link-2" class="headerlink" title="示例代码link"></a>示例代码link</h2><h1 id="业务代码"><a href="#业务代码" class="headerlink" title="业务代码"></a>业务代码</h1><h2 id="xml"><a href="#xml" class="headerlink" title="xml"></a>xml</h2><h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p>​	case分支，业务</p>
 <h2 id="示例代码link-3"><a href="#示例代码link-3" class="headerlink" title="示例代码link"></a>示例代码link</h2><h1 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a>多路复用</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">https://hexo.io/docs/one-command-deployment.html</a>)</p>
 </blockquote>
 
                 
