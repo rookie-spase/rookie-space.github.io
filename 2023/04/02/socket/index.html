@@ -16,21 +16,21 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="博主目前专科大一，快学完四大件，也会一点框架使用。现在目前没有方向就想着写写博客。 博客内容：  C++的心得 四大件的总结 框架的项目介绍 屁大点事  谢谢观看">
+    <meta name="description" content="BASE2个主机用socket来建立连接 通信流程将整个过程比作2个木板(A,B)墙上拉水管的过程，但是在B墙的前面还有一个人(C) 客户端  创建socket socket(AF_INET, SOCK_STREAM, 0) 参数：ipv4 or ipv6,tcp or udp,default value is 0 返回值：就是一个socket的编号，这个编号代表这个socket 函数作用：创建一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="介绍">
-<meta property="og:url" content="http://example.com/2023/03/28/%E4%BB%8B%E7%BB%8D/index.html">
+<meta property="og:title" content="socket">
+<meta property="og:url" content="http://example.com/2023/04/02/socket/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="博主目前专科大一，快学完四大件，也会一点框架使用。现在目前没有方向就想着写写博客。 博客内容：  C++的心得 四大件的总结 框架的项目介绍 屁大点事  谢谢观看">
+<meta property="og:description" content="BASE2个主机用socket来建立连接 通信流程将整个过程比作2个木板(A,B)墙上拉水管的过程，但是在B墙的前面还有一个人(C) 客户端  创建socket socket(AF_INET, SOCK_STREAM, 0) 参数：ipv4 or ipv6,tcp or udp,default value is 0 返回值：就是一个socket的编号，这个编号代表这个socket 函数作用：创建一">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-03-28T04:34:32.532Z">
-<meta property="article:modified_time" content="2023-03-28T04:39:20.292Z">
+<meta property="article:published_time" content="2023-04-02T06:36:32.356Z">
+<meta property="article:modified_time" content="2023-04-02T07:34:41.235Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>介绍 - Hexo</title>
+  <title>socket - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="介绍"></span>
+            <span id="subtitle" data-typed-text="socket"></span>
           
         </div>
 
@@ -207,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-03-28 12:34" pubdate>
-          March 28, 2023 pm
+        <time datetime="2023-04-02 14:36" pubdate>
+          April 2, 2023 pm
         </time>
       </span>
     
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          73 words
+          1.6k words
         
       </span>
     
@@ -230,7 +230,7 @@
         
         
         
-          1 mins
+          14 mins
         
       </span>
     
@@ -268,20 +268,108 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">介绍</h1>
+            <h1 style="display: none">socket</h1>
             
             
               <div class="markdown-body">
                 
-                <p>博主目前专科大一，快学完四大件，也会一点框架使用。现在目前没有方向就想着写写博客。</p>
-<p>博客内容：</p>
+                <h1 id="BASE"><a href="#BASE" class="headerlink" title="BASE"></a>BASE</h1><p>2个主机用socket来建立连接</p>
+<h2 id="通信流程"><a href="#通信流程" class="headerlink" title="通信流程"></a>通信流程</h2><p>将整个过程比作2个木板(A,B)墙上拉水管的过程，但是在B墙的前面还有一个人(C)</p>
+<p><em><strong>客户端</strong></em></p>
 <ul>
-<li>C++的心得</li>
-<li>四大件的总结</li>
-<li>框架的项目介绍</li>
-<li>屁大点事</li>
+<li><p>创建socket</p>
+<p><code>socket(AF_INET, SOCK_STREAM, 0)</code></p>
+<p><strong>参数</strong>：<code>ipv4 or ipv6</code>,<code>tcp or udp</code>,<code>default value is 0</code></p>
+<p><strong>返回值</strong>：<code>就是一个socket的编号，这个编号代表这个socket</code></p>
+<p><strong>函数作用</strong>：<code>创建一个socket端口</code></p>
+<blockquote>
+<p>相当于在木板墙A上开一个方形口A_1</p>
+</blockquote>
+</li>
+<li><p>连接</p>
+<p><code>connect(sockfd, (struct sockaddr*)&amp;server, sizeof(server))</code></p>
+<p><strong>参数</strong>：<code>从那个socket出发去连接</code>,<code>服务器的ip</code>,<code>ip的大小</code></p>
+<p><strong>返回值</strong>：<code>0 is success</code></p>
+<p><strong>函数作用</strong>：假设参数是A,B,C<code>那么就是让Asocket去连接Bserver.连接成功之后就可以从这个socket和B通信</code></p>
+<blockquote>
+<p>在木板墙A的A_1和木板墙B的某个口上拉一根水管</p>
+</blockquote>
+</li>
+<li><p>收发</p>
+<p> <code>send(sockfd, message, strlen(message), 0); </code></p>
+<p><strong>参数</strong>：<code>从那个socket出发去通信</code>,<code>要发送的东西</code>,<code>发送的大小</code>,<code>default is 0</code></p>
+<p><strong>返回值</strong>：<code>-1 -&gt; error</code>,<code>num -&gt; 发送了多少数据</code></p>
+<p><strong>函数作用</strong>：<code>向B发送信息</code></p>
+<blockquote>
+<p>从A_1灌水，送到B哪里</p>
+</blockquote>
+<p><code>recv(clientfd, res, 1024, 0);</code></p>
+</li>
+<li><p>关闭socket</p>
+<p><code>close(sockfd);</code></p>
+<blockquote>
+<p>A_1的水管拉下来，把方形口补上</p>
+</blockquote>
+</li>
 </ul>
-<p>谢谢观看</p>
+<p><em><strong>服务端</strong></em></p>
+<ul>
+<li><p>创建socket</p>
+<p><code>socket(AF_INET, SOCK_STREAM, 0)</code></p>
+<blockquote>
+<p>这个创建的socket是监听socket，就是看有没有客户端连接练上来的socket。</p>
+<p>这个socket就是刚才提到的人,C</p>
+</blockquote>
+</li>
+<li><p>将对应的socket绑定一个ip</p>
+<p><code>bind(sockfd,(struct sockaddr*)&amp;server,sizeof(struct sockaddr))</code></p>
+<p><strong>参数</strong>：<code>socket</code>,<code>给这个socket设置对应的ip</code>,<code>ip大小</code></p>
+<p><strong>返回值</strong>：<code>0 -&gt; success</code></p>
+<p><strong>作用</strong>：<code>给这个socket一个指定的ip，让客户端连接</code></p>
+<blockquote>
+<p>让C确定站位，当A墙连接过来的时候，会认为C是一个方形口</p>
+</blockquote>
+</li>
+<li><p>激活这个socket</p>
+<p><code>listen(sockfd,50)</code></p>
+<p><strong>参数</strong>：<code>socket</code>,<code>给这个socket设置对应的ip</code>,<code>ip大小</code></p>
+<p><strong>返回值</strong>：<code>0 -&gt; success</code></p>
+<p><strong>作用</strong>：<code>给这个socket一个指定的ip，让客户端连接</code></p>
+<blockquote>
+<p>让C开始工作，并且一次能够拿住50根水管。</p>
+</blockquote>
+</li>
+<li><p>从socket中接收一个请求</p>
+<p><code>int clientfd = accept(sockfd, (struct sockaddr*)&amp;client, &amp;client_len);</code></p>
+<p><strong>参数</strong>：<code>监听的那个socket</code>,<code>接收客户的ip</code>,<code>ip大小</code></p>
+<p><strong>返回值</strong>：<code>一个和客户端通信的新socket</code></p>
+<p><strong>作用</strong>：<code>从socket监听的队列中拿出第一个并且创建新的连接，这个连接用来和客户端通信，本来的那个socket继续监听</code></p>
+<blockquote>
+<p>墙B让C从手里的一堆水管里拿出第一个连接的水管。</p>
+<p>并且在自己墙上开一个方形口,将这个水管和这个新开出来的方形口连接。</p>
+<p>连接了之后，C就不再拿着这跟水管了。</p>
+</blockquote>
+</li>
+<li><p>和这个请求通信</p>
+<p><code>send(clientfd, res, strlen(res), 0); </code></p>
+<blockquote>
+<p>same story</p>
+</blockquote>
+</li>
+<li><p>关闭socket</p>
+<p>  <code>close(sockfd);</code></p>
+<blockquote>
+<p>same story</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="示例代码link"><a href="#示例代码link" class="headerlink" title="示例代码link"></a>示例代码link</h2><blockquote>
+<p>客户端:<a target="_blank" rel="noopener" href="https://github.com/rookie-spase/socket/blob/master/normal_client.cpp">https://github.com/rookie-spase/socket/blob/master/normal_client.cpp</a></p>
+<p>服务端:<a target="_blank" rel="noopener" href="https://github.com/rookie-spase/socket/blob/master/normal_server.cpp">https://github.com/rookie-spase/socket/blob/master/normal_server.cpp</a></p>
+</blockquote>
+<h1 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h1><h2 id="fork"><a href="#fork" class="headerlink" title="fork"></a>fork</h2><h2 id="signal"><a href="#signal" class="headerlink" title="signal"></a>signal</h2><h2 id="示例代码link-1"><a href="#示例代码link-1" class="headerlink" title="示例代码link"></a>示例代码link</h2><h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><h2 id="pthread"><a href="#pthread" class="headerlink" title="pthread"></a>pthread</h2><h2 id="和C-库的async和future对比"><a href="#和C-库的async和future对比" class="headerlink" title="和C++库的async和future对比"></a>和C++库的async和future对比</h2><h2 id="示例代码link-2"><a href="#示例代码link-2" class="headerlink" title="示例代码link"></a>示例代码link</h2><h1 id="业务代码"><a href="#业务代码" class="headerlink" title="业务代码"></a>业务代码</h1><h2 id="xml"><a href="#xml" class="headerlink" title="xml"></a>xml</h2><h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p>​	case分支，业务</p>
+<h2 id="示例代码link-3"><a href="#示例代码link-3" class="headerlink" title="示例代码link"></a>示例代码link</h2><h1 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a>多路复用</h1><blockquote>
+</blockquote>
 
                 
               </div>
@@ -299,8 +387,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>介绍</div>
-      <div>http://example.com/2023/03/28/介绍/</div>
+      <div>socket</div>
+      <div>http://example.com/2023/04/02/socket/</div>
     </div>
     <div class="license-meta">
       
@@ -312,7 +400,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>March 28, 2023</div>
+          <div>April 2, 2023</div>
         </div>
       
       
@@ -344,18 +432,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/02/socket/" title="socket">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">socket</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/19/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/" title="面向对象三大特性">
-                        <span class="hidden-mobile">面向对象三大特性</span>
+                      <a href="/2023/03/28/%E4%BB%8B%E7%BB%8D/" title="介绍">
+                        <span class="hidden-mobile">介绍</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
