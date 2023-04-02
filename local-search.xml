@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>C++特性</title>
+    <link href="/2023/04/02/C++%E7%89%B9%E6%80%A7/"/>
+    <url>/2023/04/02/C++%E7%89%B9%E6%80%A7/</url>
+    
+    <content type="html"><![CDATA[<p>注解：这个用来记录我学到的C艹特性,只是一个小本子罢了.</p><h2 id="if设置变量"><a href="#if设置变量" class="headerlink" title="if设置变量"></a>if设置变量</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-type">int</span> b = <span class="hljs-number">4</span>;<br><span class="hljs-keyword">if</span>(<span class="hljs-type">int</span> a = <span class="hljs-built_in">max</span>(<span class="hljs-number">5</span>,<span class="hljs-number">3</span>);a &gt; b)&#123;<br>    cout &lt;&lt; <span class="hljs-string">&quot;a is bigger&quot;</span> &lt;&lt; end;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>C++特性</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>socket</title>
     <link href="/2023/04/02/socket/"/>
     <url>/2023/04/02/socket/</url>
