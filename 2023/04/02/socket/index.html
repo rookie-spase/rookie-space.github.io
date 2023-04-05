@@ -24,7 +24,7 @@
 <meta property="og:description" content="BASE2个主机用socket来建立连接 通信流程将整个过程比作2个木板(A,B)墙上拉水管的过程，但是在B墙的前面还有一个人(C) 客户端  创建socket socket(AF_INET, SOCK_STREAM, 0) 参数：ipv4 or ipv6,tcp or udp,default value is 0 返回值：就是一个socket的编号，这个编号代表这个socket 函数作用：创建一">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-04-02T07:37:46.807Z">
-<meta property="article:modified_time" content="2023-04-04T07:27:16.471Z">
+<meta property="article:modified_time" content="2023-04-05T09:23:15.436Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="网络编程">
 <meta name="twitter:card" content="summary_large_image">
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.1k words
+          4.8k words
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          35 mins
+          40 mins
         
       </span>
     
@@ -443,8 +443,25 @@
 <h2 id="示例代码link-2"><a href="#示例代码link-2" class="headerlink" title="示例代码link"></a>示例代码link</h2><blockquote>
 <p>测试代码：<a target="_blank" rel="noopener" href="https://github.com/rookie-spase/socket/blob/master/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%B5%8B%E8%AF%95.cpp">https://github.com/rookie-spase/socket/blob/master/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%B5%8B%E8%AF%95.cpp</a></p>
 </blockquote>
-<h1 id="业务代码"><a href="#业务代码" class="headerlink" title="业务代码"></a>业务代码</h1><h2 id="xml"><a href="#xml" class="headerlink" title="xml"></a>xml</h2><h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p>​	case分支，业务</p>
-<h2 id="示例代码link-3"><a href="#示例代码link-3" class="headerlink" title="示例代码link"></a>示例代码link</h2><h1 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a>多路复用</h1><blockquote>
+<h1 id="业务代码"><a href="#业务代码" class="headerlink" title="业务代码"></a>业务代码</h1><p>业务就是一个函数，这个函数为客户提供{身份验证，查询数据}服务这类的程序。</p>
+<h2 id="xml"><a href="#xml" class="headerlink" title="xml"></a>xml</h2><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tex">&lt;code&gt;1&lt;/code&gt;&lt;account&gt;ads&lt;/account&gt;&lt;pwd&gt;156324&lt;/pwd&gt;<br></code></pre></td></tr></table></figure>
+
+<p>这就是xml，尖括号里面的东西可以随意指定。</p>
+<hr>
+<blockquote>
+<p>所以就是客户端通过xml发账号密码，服务端接收处理。这就是简单的业务</p>
+</blockquote>
+<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p>一个服务器应该多种业务，那么就应该有应该判断，这个判断来辨别你需要的业务是那个。</p>
+<p>所以用case分支处理业务，也非常直观。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">recv</span>(client,recv,<span class="hljs-built_in">sizeof</span>(recv),<span class="hljs-number">0</span>);<br><span class="hljs-type">int</span> code;<br><span class="hljs-built_in">getfromxml</span>(&amp;code,recv,<span class="hljs-string">&quot;code&quot;</span>);<br><span class="hljs-keyword">switch</span>(code)&#123;<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:<br>        <span class="hljs-built_in">process_account</span>(recv,send);<span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:<br>        <span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">default</span>:<br>        cout &lt;&lt; <span class="hljs-string">&quot;none&quot;</span> &lt;&lt; endl;<br>        <span class="hljs-keyword">break</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>接收客户端的数据保存到recv中，从recv中的数据提取出编号，根据{编号和recv}来考虑要向客户端发什么</p>
+</blockquote>
+<h2 id="示例代码link-3"><a href="#示例代码link-3" class="headerlink" title="示例代码link"></a>示例代码link</h2><blockquote>
+<p>服务端:<a target="_blank" rel="noopener" href="https://github.com/rookie-spase/socket/blob/master/%E4%B8%9A%E5%8A%A1_%E5%A4%9A%E7%BA%BF%E7%A8%8B.cpp">https://github.com/rookie-spase/socket/blob/master/%E4%B8%9A%E5%8A%A1_%E5%A4%9A%E7%BA%BF%E7%A8%8B.cpp</a></p>
+</blockquote>
+<h1 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a>多路复用</h1><h2 id="select"><a href="#select" class="headerlink" title="select"></a>select</h2><blockquote>
 <p><a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">https://hexo.io/docs/one-command-deployment.html</a>)</p>
 </blockquote>
 
